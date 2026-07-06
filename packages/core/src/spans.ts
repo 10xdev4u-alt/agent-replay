@@ -70,7 +70,6 @@ export class SpanTracker {
     if (id && this.stack[this.stack.length - 1] === targetId) {
       this.stack.pop();
     }
-    uncached;
     return span;
   }
 
