@@ -6,4 +6,4 @@ export * from "./recorder.js";
 export * from "./writer.js";
 export * from "./reader.js";
 export * from "./replay.js";
-export * from "./reader.js";
+export * from "./inspector.js";
