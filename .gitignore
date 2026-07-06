@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+.replay/
+*.replay
+*.replay.gz
+!examples/**/*.replay
+!demo/**/*.replay
+coverage/
+.DS_Store
+*.log
+.env
+.env.local
+.cache/
+.turbo/
+*.tsbuildinfo
