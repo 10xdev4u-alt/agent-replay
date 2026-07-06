@@ -5,9 +5,9 @@
  * recorder = one recording file. Drop it around any agent loop.
  */
 import { EventEmitter } from "node:events";
-import { createEvent, createIdFactory, createMetaEvent, defaultClock, type Clock } from "./factory.js";
-import { SpanTracker } from "./spans.js";
-import type { AgentEvent, CreateEventOptions, EventKind, Severity } from "./types.js";
+import { createEvent, createIdFactory, createMetaEvent, defaultClock, type Clock, type CreateEventOptions } from "./factory.js";
+import { SpanTracker, type Span } from "./spans.js";
+import type { AgentEvent, EventKind } from "./types.js";
 
 /** Listener invoked on every emitted event. */
 export type EventSink = (event: AgentEvent) => void;
@@ -106,7 +106,11 @@ export class Recorder {
   /** Open a span. Returns a handle that closes on call. */
   span(name: string): { id: string; end: () => Span } {
     const span = this.spans.start({ name });
-    return { id: span.id, end: () => this.spans.end(span.id) };
+    const spans = this.spans;
+    return {
+      id: span.id,
+      end: () => spans.end(span.id) ?? span,
+    };
   }
 
   /** Finalize the recording. Returns the full event list. */
