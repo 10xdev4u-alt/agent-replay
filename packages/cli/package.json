@@ -1,0 +1,38 @@
+{
+  "name": "@agent-replay/cli",
+  "version": "0.1.0",
+  "description": "Record, replay, and inspect AI agent runs from the terminal.",
+  "type": "module",
+  "license": "MIT",
+  "author": "10xdev4u-alt",
+  "bin": {
+    "agent-replay": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf dist node_modules"
+  },
+  "dependencies": {
+    "@agent-replay/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
