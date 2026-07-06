@@ -7,3 +7,4 @@ export * from "./writer.js";
 export * from "./reader.js";
 export * from "./replay.js";
 export * from "./inspector.js";
+export * from "./filters.js";
