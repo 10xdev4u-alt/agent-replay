@@ -11,8 +11,9 @@ import { Timeline } from "./components/Timeline.js";
 import { Conversation } from "./components/Conversation.js";
 import { EventInspector } from "./components/EventInspector.js";
 import { StatsPanel } from "./components/StatsPanel.js";
+import { FilterBar } from "./components/FilterBar.js";
 import { summarize } from "@agent-replay/core";
-import type { AgentEvent } from "@agent-replay/core";
+import type { AgentEvent, EventKind } from "@agent-replay/core";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -21,6 +22,22 @@ export default function App() {
   const { events, cursor, state, loading, error } = rec;
   const { isPlaying, speed, toggle, setSpeed } = usePlayer(rec);
   const [selected] = useState<AgentEvent | null>(null);
+  const [query, setQuery] = useState("");
+  const [activeKinds, setActiveKinds] = useState<Set<EventKind>>(new Set());
+
+  const visibleEvents: readonly AgentEvent[] =
+    query || activeKinds.size
+      ? events.filter((e) => {
+          if (activeKinds.size && !activeKinds.has(e.kind)) return false;
+          if (!query) return true;
+          try {
+            return JSON.stringify(e.data).toLowerCase().includes(query.toLowerCase()) ||
+              e.name.toLowerCase().includes(query.toLowerCase());
+          } catch {
+            return false;
+          }
+        })
+      : events;
 
   const onDrop = useCallback(async (file: File) => {
     const text = await file.text();
@@ -76,7 +93,15 @@ export default function App() {
 
       {events.length > 0 && (
         <div className={styles.body}>
-          <Timeline events={events} cursor={cursor} onCursor={rec.seek} />
+          <FilterBar
+            query={query}
+            onQuery={setQuery}
+            activeKinds={activeKinds}
+            onKinds={setActiveKinds}
+            matched={visibleEvents.length}
+            total={events.length}
+          />
+          <Timeline events={visibleEvents} cursor={Math.min(cursor, visibleEvents.length)} onCursor={rec.seek} />
           <div className={styles.main}>
             <Conversation messages={state.messages} cursor={cursor} />
             <div className={styles.sidebar}>
