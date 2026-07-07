@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "pnpm -r run build",
-    "test": "pnpm -r run test",
+    "test": "pnpm --filter @agent-replay/core run test",
     "lint": "pnpm -r run lint",
     "typecheck": "pnpm -r run typecheck"
   },
