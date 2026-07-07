@@ -1,0 +1,49 @@
+.track {
+  display: flex;
+  align-items: stretch;
+  gap: 1px;
+  height: 64px;
+  padding: 8px 12px;
+  background: #0f1117;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  height: 64px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.bar {
+  flex: 1 1 0;
+  min-width: 1px;
+  background: var(--bar-color, #6b7280);
+  opacity: 0.35;
+  transition: opacity 120ms ease;
+}
+
+.bar[data-past] {
+  opacity: 1;
+}
+
+.bar[data-active-span] {
+  box-shadow: 0 0 0 1px #fff inset;
+}
+
+.cursor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: #fff;
+  pointer-events: none;
+  will-change: transform;
+}

@@ -16,7 +16,7 @@ export default function App() {
   const [source, setSource] = useState<RecordingSource | null>(readSourceFromUrl());
   const { events, cursor, state, loading, error, seek, step, seekStart, seekEnd } =
     useRecording(source);
-  const [selected, setSelected] = useState<AgentEvent | null>(null);
+  const [selected] = useState<AgentEvent | null>(null);
 
   const onDrop = useCallback(async (file: File) => {
     const text = await file.text();

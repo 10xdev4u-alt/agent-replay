@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App.js";
-import "./styles.css";
+import { default as App } from "./App.js";
+import "./App.module.css";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("#root not found");
