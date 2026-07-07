@@ -9,3 +9,4 @@ export * from "./replay.js";
 export * from "./inspector.js";
 export * from "./filters.js";
 export * from "./wrap.js";
+export * from "./pricing.js";
