@@ -39,12 +39,12 @@ export async function diff(args: string[]): Promise<number> {
   console.log(`cost:     ${costSign}${formatCost(d.costDelta)}`);
   console.log(`duration: ${durSign}${formatMs(d.durationDeltaMs)}`);
 
-  const interesting = d.entries.filter((e) => e.change !== "same");
+  const interesting = d.entries.filter((ev) => ev.change !== "same");
   if (interesting.length) {
     console.log("\nchanged events:");
-    for (const e of interesting) {
-      const tag = e.change === "added" ? "+" : e.change === "removed" ? "-" : "~";
-      console.log(`  ${tag} ${e.key}`);
+    for (const ev of interesting) {
+      const tag = ev.change === "added" ? "+" : ev.change === "removed" ? "-" : "~";
+      console.log(`  ${tag} ${ev.key}`);
     }
   }
 
