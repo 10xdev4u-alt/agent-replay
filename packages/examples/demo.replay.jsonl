@@ -1,0 +1,20 @@
+{"id":"evt_1","ts":1783454555290,"kind":"meta","name":"session.meta","level":"info","spanId":"root","parentId":null,"data":{"name":"demo-agent","protocol":"0.1.0","startedAt":1783454555290}}
+{"id":"evt_1","ts":1783454555290,"kind":"message","name":"message.user","level":"info","spanId":"root","parentId":null,"data":{"role":"user","content":"What files are in the src directory?"}}
+{"id":"evt_2","ts":1783454555290,"kind":"thought","name":"thinking","level":"info","spanId":"root","parentId":null,"data":{"text":"The user wants a directory listing."}}
+{"id":"evt_3","ts":1783454555412,"kind":"prompt","name":"prompt.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","messages":[{"role":"user","content":"What files are in src?"}]}}
+{"id":"evt_4","ts":1783454555492,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"I'll"}
+{"id":"evt_5","ts":1783454555522,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" check"}
+{"id":"evt_6","ts":1783454555553,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" the"}
+{"id":"evt_7","ts":1783454555584,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" src"}
+{"id":"evt_8","ts":1783454555615,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" directory"}
+{"id":"evt_9","ts":1783454555645,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" for"}
+{"id":"evt_a","ts":1783454555676,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" you"}
+{"id":"evt_b","ts":1783454555706,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"."}
+{"id":"evt_c","ts":1783454555737,"kind":"response","name":"response.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","content":"I'll check the src directory for you."}}
+{"id":"evt_d","ts":1783454555739,"kind":"metric","name":"metric.tokens","level":"info","spanId":"span_1","parentId":null,"data":{"name":"tokens","value":142}}
+{"id":"evt_e","ts":1783454555739,"kind":"metric","name":"metric.cost","level":"info","spanId":"span_1","parentId":null,"data":{"name":"cost","value":0.0021}}
+{"id":"evt_f","ts":1783454555739,"kind":"tool_call","name":"tool.list_files","level":"info","spanId":"span_2","parentId":null,"data":{"path":"./src"}}
+{"id":"evt_g","ts":1783454555891,"kind":"tool_result","name":"tool.list_files.result","level":"info","spanId":"span_2","parentId":null,"data":{"files":["main.ts","utils.ts","config.json"]}}
+{"id":"evt_h","ts":1783454555891,"kind":"message","name":"message.assistant","level":"info","spanId":"root","parentId":null,"data":{"role":"assistant","content":"src contains: main.ts, utils.ts, config.json."}}
+{"id":"evt_i","ts":1783454555891,"kind":"metric","name":"metric.tokens","level":"info","spanId":"root","parentId":null,"data":{"name":"tokens","value":18}}
+{"id":"evt_j","ts":1783454555891,"kind":"metric","name":"metric.cost","level":"info","spanId":"root","parentId":null,"data":{"name":"cost","value":0.0003}}
