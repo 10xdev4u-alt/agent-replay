@@ -10,4 +10,5 @@ export * from "./inspector.js";
 export * from "./filters.js";
 export * from "./wrap.js";
 export * from "./archive.js";
+export * from "./diff.js";
 export * from "./pricing.js";
