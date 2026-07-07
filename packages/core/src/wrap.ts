@@ -42,8 +42,9 @@ export function wrapFetch(rec: Recorder): () => void {
   const original = globalThis.fetch;
   if (!original) return () => {};
 
-  globalThis.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-    const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+  const wrapped: typeof fetch = async (input, init) => {
+    const url =
+      typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
     const method = init?.method ?? "GET";
     const span = rec.span(`fetch ${method} ${shortUrl(url)}`);
 
@@ -56,7 +57,7 @@ export function wrapFetch(rec: Recorder): () => void {
     }
 
     try {
-      const res = await original(input as Request, init);
+      const res = await original(input, init);
       const cloned = res.clone();
       // Fire-and-forget: record the response text without blocking the caller.
       cloned.text().then((text) => {
@@ -71,6 +72,7 @@ export function wrapFetch(rec: Recorder): () => void {
     }
   };
 
+  globalThis.fetch = wrapped;
   return () => {
     globalThis.fetch = original;
   };

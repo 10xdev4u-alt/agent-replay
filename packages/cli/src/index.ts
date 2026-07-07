@@ -10,6 +10,8 @@ import { play } from "./commands/play.js";
 import { serve } from "./commands/serve.js";
 import { info } from "./commands/info.js";
 import { version } from "./commands/version.js";
+import { exportCmd } from "./commands/export.js";
+import { importCmd } from "./commands/import.js";
 
 const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["record", record],
@@ -17,6 +19,8 @@ const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["serve", serve],
   ["info", info],
   ["version", version],
+  ["export", exportCmd],
+  ["import", importCmd],
 ]);
 
 function printHelp(): void {
@@ -30,6 +34,8 @@ COMMANDS
   play   <file>       Print a recorded session as a readable timeline
   serve   [dir]       Serve recordings over HTTP for the viewer
   info    <file>      Print summary stats for a recording
+  export <in> <out>   Convert .replay.jsonl → portable .replay archive
+  import <in> <out>   Convert .replay archive → .replay.jsonl
   version             Print the installed version
 
 OPTIONS
