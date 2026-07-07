@@ -6,6 +6,7 @@
  */
 import { useState, useCallback } from "react";
 import { useRecording, type RecordingSource } from "./hooks/useRecording.js";
+import { usePlayer } from "./hooks/usePlayer.js";
 import { Timeline } from "./components/Timeline.js";
 import { Conversation } from "./components/Conversation.js";
 import { EventInspector } from "./components/EventInspector.js";
@@ -14,8 +15,9 @@ import styles from "./App.module.css";
 
 export default function App() {
   const [source, setSource] = useState<RecordingSource | null>(readSourceFromUrl());
-  const { events, cursor, state, loading, error, seek, step, seekStart, seekEnd } =
-    useRecording(source);
+  const rec = useRecording(source);
+  const { events, cursor, state, loading, error } = rec;
+  const { isPlaying, speed, toggle, setSpeed } = usePlayer(rec);
   const [selected] = useState<AgentEvent | null>(null);
 
   const onDrop = useCallback(async (file: File) => {
@@ -49,11 +51,15 @@ export default function App() {
           )}
         </div>
         <div className={styles.controls}>
-          <button onClick={seekStart} disabled={!events.length} title="start">⏮</button>
-          <button onClick={() => step(-1)} disabled={!events.length} title="back">◀</button>
+          <button onClick={rec.seekStart} disabled={!events.length} title="start (Home)">⏮</button>
+          <button onClick={() => rec.step(-1)} disabled={!events.length} title="back (←)">◀</button>
+          <button onClick={toggle} disabled={!events.length} title="play/pause (space)" className={styles.play}>
+            {isPlaying ? "⏸" : "▶"}
+          </button>
+          <button onClick={() => rec.step(1)} disabled={!events.length} title="forward (→)">▶</button>
+          <button onClick={rec.seekEnd} disabled={!events.length} title="end (End)">⏭</button>
+          <button onClick={() => setSpeed(speed >= 4 ? 0.25 : speed * 2)} title="speed (+/-)" className={styles.speed}>{speed}×</button>
           <span className={styles.counter}>{cursor} / {events.length}</span>
-          <button onClick={() => step(1)} disabled={!events.length} title="forward">▶</button>
-          <button onClick={seekEnd} disabled={!events.length} title="end">⏭</button>
         </div>
       </header>
 
@@ -68,7 +74,7 @@ export default function App() {
 
       {events.length > 0 && (
         <div className={styles.body}>
-          <Timeline events={events} cursor={cursor} onCursor={seek} />
+          <Timeline events={events} cursor={cursor} onCursor={rec.seek} />
           <div className={styles.main}>
             <Conversation messages={state.messages} cursor={cursor} />
             <EventInspector event={selected ?? events[cursor - 1] ?? null} />
