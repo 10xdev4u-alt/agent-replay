@@ -10,6 +10,8 @@ import { usePlayer } from "./hooks/usePlayer.js";
 import { Timeline } from "./components/Timeline.js";
 import { Conversation } from "./components/Conversation.js";
 import { EventInspector } from "./components/EventInspector.js";
+import { StatsPanel } from "./components/StatsPanel.js";
+import { summarize } from "@agent-replay/core";
 import type { AgentEvent } from "@agent-replay/core";
 import styles from "./App.module.css";
 
@@ -77,7 +79,10 @@ export default function App() {
           <Timeline events={events} cursor={cursor} onCursor={rec.seek} />
           <div className={styles.main}>
             <Conversation messages={state.messages} cursor={cursor} />
-            <EventInspector event={selected ?? events[cursor - 1] ?? null} />
+            <div className={styles.sidebar}>
+              <StatsPanel summary={summarize(events)} />
+              <EventInspector event={selected ?? events[cursor - 1] ?? null} />
+            </div>
           </div>
         </div>
       )}
