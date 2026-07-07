@@ -12,6 +12,7 @@ import { info } from "./commands/info.js";
 import { version } from "./commands/version.js";
 import { exportCmd } from "./commands/export.js";
 import { importCmd } from "./commands/import.js";
+import { diff } from "./commands/diff.js";
 
 const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["record", record],
@@ -21,6 +22,7 @@ const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["version", version],
   ["export", exportCmd],
   ["import", importCmd],
+  ["diff", diff],
 ]);
 
 function printHelp(): void {
@@ -36,6 +38,7 @@ COMMANDS
   info    <file>      Print summary stats for a recording
   export <in> <out>   Convert .replay.jsonl → portable .replay archive
   import <in> <out>   Convert .replay archive → .replay.jsonl
+  diff <a> <b>        Diff two recordings, show what changed
   version             Print the installed version
 
 OPTIONS
@@ -46,6 +49,7 @@ EXAMPLES
   agent-replay record ./my-agent.ts
   agent-replay play run.replay.jsonl
   agent-replay serve ./recordings
+  agent-replay diff base.replay.jsonl new.replay.jsonl
 `);
 }
 
