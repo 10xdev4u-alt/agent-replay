@@ -1,0 +1,39 @@
+name: 🐛 Bug report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug. Include the smallest recording or script that reproduces it.
+      placeholder: "When I run `agent-replay play ...`, it ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: package
+    attributes:
+      label: Which package?
+      options:
+        - "@agent-replay/core"
+        - "@agent-replay/cli"
+        - "@agent-replay/viewer"
+        - examples
+        - docs
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Node version, browser (if viewer).
+      placeholder: "Node v22, macOS, Chrome 130"
+    validations:
+      required: false
