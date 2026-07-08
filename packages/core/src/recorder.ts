@@ -89,6 +89,9 @@ export class Recorder {
   delta(chunk: unknown, opts?: CreateEventOptions): AgentEvent {
     return this.event("delta", "delta", chunk, opts);
   }
+  thought(content: unknown, opts?: CreateEventOptions): AgentEvent {
+    return this.event("thought", "thought", content, opts);
+  }
   toolCall(tool: string, args: unknown, opts?: CreateEventOptions): AgentEvent {
     return this.event("tool_call", `tool.${tool}`, args, opts);
   }
