@@ -1,32 +1,32 @@
-{"id":"evt_1","ts":1783494580761,"kind":"meta","name":"session.meta","level":"info","spanId":"root","parentId":null,"data":{"name":"demo-agent","protocol":"0.1.0","startedAt":1783494580761}}
-{"id":"evt_1","ts":1783494580761,"kind":"message","name":"message.user","level":"info","spanId":"root","parentId":null,"data":{"role":"user","content":"What files are in the src directory?"}}
-{"id":"evt_2","ts":1783494580761,"kind":"thought","name":"thought","level":"info","spanId":"root","parentId":null,"data":"reasoning"}
-{"id":"evt_3","ts":1783494580802,"kind":"prompt","name":"prompt.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","messages":[{"role":"user","content":"list src/"}]}}
-{"id":"evt_4","ts":1783494580832,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"I'll"}
-{"id":"evt_5","ts":1783494580853,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" check"}
-{"id":"evt_6","ts":1783494580873,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" the"}
-{"id":"evt_7","ts":1783494580893,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" `src`"}
-{"id":"evt_8","ts":1783494580913,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" dir"}
-{"id":"evt_9","ts":1783494580934,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"."}
-{"id":"evt_a","ts":1783494580954,"kind":"response","name":"response.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","content":"I'll check the `src` dir."}}
-{"id":"evt_b","ts":1783494580955,"kind":"metric","name":"metric.tokens","level":"info","spanId":"span_1","parentId":null,"data":{"name":"tokens","value":88}}
-{"id":"evt_c","ts":1783494580955,"kind":"metric","name":"metric.cost","level":"info","spanId":"span_1","parentId":null,"data":{"name":"cost","value":0.0013}}
-{"id":"evt_d","ts":1783494580955,"kind":"tool_call","name":"tool.list_files","level":"info","spanId":"span_2","parentId":null,"data":{"path":"./src"}}
-{"id":"evt_e","ts":1783494581015,"kind":"tool_result","name":"tool.list_files.result","level":"info","spanId":"span_2","parentId":null,"data":{"files":["main.ts","utils.ts","config.json"]}}
-{"id":"evt_f","ts":1783494581015,"kind":"message","name":"message.assistant","level":"info","spanId":"root","parentId":null,"data":{"role":"assistant","content":"The `src` directory contains: main.ts, utils.ts, and config.json."}}
-{"id":"evt_g","ts":1783494581015,"kind":"metric","name":"metric.tokens","level":"info","spanId":"root","parentId":null,"data":{"name":"tokens","value":14}}
-{"id":"evt_h","ts":1783494581015,"kind":"metric","name":"metric.cost","level":"info","spanId":"root","parentId":null,"data":{"name":"cost","value":0.0002}}
-{"id":"evt_i","ts":1783494581015,"kind":"message","name":"message.user","level":"info","spanId":"root","parentId":null,"data":{"role":"user","content":"Now read config.json."}}
-{"id":"evt_j","ts":1783494581015,"kind":"tool_call","name":"tool.read_file","level":"info","spanId":"span_3","parentId":null,"data":{"path":"./src/config.json"}}
-{"id":"evt_k","ts":1783494581066,"kind":"error","name":"error","level":"error","spanId":"span_3","parentId":null,"data":{"message":"ENOENT: no such file ./src/config.json","stack":"Error: ENOENT: no such file ./src/config.json\n    at main (file:///home/princetheprogrammerbtw/agent-replay/packages/examples/scripts/demo-agent.mjs:49:13)","name":"Error"}}
-{"id":"evt_l","ts":1783494581066,"kind":"prompt","name":"prompt.openai","level":"info","spanId":"span_4","parentId":null,"data":{"model":"gpt-4o","messages":[{"role":"user","content":"retry read"}]}}
-{"id":"evt_m","ts":1783494581096,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":"Sorry"}
-{"id":"evt_n","ts":1783494581117,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":", that"}
-{"id":"evt_o","ts":1783494581137,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" file"}
-{"id":"evt_p","ts":1783494581157,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" is"}
-{"id":"evt_q","ts":1783494581177,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" missing"}
-{"id":"evt_r","ts":1783494581198,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":"."}
-{"id":"evt_s","ts":1783494581218,"kind":"response","name":"response.openai","level":"info","spanId":"span_4","parentId":null,"data":{"model":"gpt-4o","content":"Sorry, that file is missing."}}
-{"id":"evt_t","ts":1783494581218,"kind":"metric","name":"metric.tokens","level":"info","spanId":"span_4","parentId":null,"data":{"name":"tokens","value":22}}
-{"id":"evt_u","ts":1783494581218,"kind":"metric","name":"metric.cost","level":"info","spanId":"span_4","parentId":null,"data":{"name":"cost","value":0.0004}}
-{"id":"evt_v","ts":1783494581218,"kind":"message","name":"message.assistant","level":"info","spanId":"root","parentId":null,"data":{"role":"assistant","content":"Sorry, that file is missing."}}
+{"id":"evt_1","ts":1783494738150,"kind":"meta","name":"session.meta","level":"info","spanId":"root","parentId":null,"data":{"name":"demo-agent","protocol":"0.1.0","startedAt":1783494738150}}
+{"id":"evt_1","ts":1783494738150,"kind":"message","name":"message.user","level":"info","spanId":"root","parentId":null,"data":{"role":"user","content":"What files are in the src directory?"}}
+{"id":"evt_2","ts":1783494738150,"kind":"thought","name":"thought","level":"info","spanId":"root","parentId":null,"data":"reasoning"}
+{"id":"evt_3","ts":1783494738191,"kind":"prompt","name":"prompt.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","messages":[{"role":"user","content":"list src/"}]}}
+{"id":"evt_4","ts":1783494738221,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"I'll"}
+{"id":"evt_5","ts":1783494738241,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" check"}
+{"id":"evt_6","ts":1783494738262,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" the"}
+{"id":"evt_7","ts":1783494738282,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" `src`"}
+{"id":"evt_8","ts":1783494738302,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":" dir"}
+{"id":"evt_9","ts":1783494738323,"kind":"delta","name":"delta","level":"info","spanId":"span_1","parentId":null,"data":"."}
+{"id":"evt_a","ts":1783494738343,"kind":"response","name":"response.openai","level":"info","spanId":"span_1","parentId":null,"data":{"model":"gpt-4o","content":"I'll check the `src` dir."}}
+{"id":"evt_b","ts":1783494738343,"kind":"metric","name":"metric.tokens","level":"info","spanId":"span_1","parentId":null,"data":{"name":"tokens","value":88}}
+{"id":"evt_c","ts":1783494738343,"kind":"metric","name":"metric.cost","level":"info","spanId":"span_1","parentId":null,"data":{"name":"cost","value":0.0013}}
+{"id":"evt_d","ts":1783494738343,"kind":"tool_call","name":"tool.list_files","level":"info","spanId":"span_2","parentId":null,"data":{"path":"./src"}}
+{"id":"evt_e","ts":1783494738404,"kind":"tool_result","name":"tool.list_files.result","level":"info","spanId":"span_2","parentId":null,"data":{"files":["main.ts","utils.ts","config.json"]}}
+{"id":"evt_f","ts":1783494738404,"kind":"message","name":"message.assistant","level":"info","spanId":"root","parentId":null,"data":{"role":"assistant","content":"The `src` directory contains: main.ts, utils.ts, and config.json."}}
+{"id":"evt_g","ts":1783494738404,"kind":"metric","name":"metric.tokens","level":"info","spanId":"root","parentId":null,"data":{"name":"tokens","value":14}}
+{"id":"evt_h","ts":1783494738404,"kind":"metric","name":"metric.cost","level":"info","spanId":"root","parentId":null,"data":{"name":"cost","value":0.0002}}
+{"id":"evt_i","ts":1783494738404,"kind":"message","name":"message.user","level":"info","spanId":"root","parentId":null,"data":{"role":"user","content":"Now read config.json."}}
+{"id":"evt_j","ts":1783494738404,"kind":"tool_call","name":"tool.read_file","level":"info","spanId":"span_3","parentId":null,"data":{"path":"./src/config.json"}}
+{"id":"evt_k","ts":1783494738455,"kind":"error","name":"error","level":"error","spanId":"span_3","parentId":null,"data":{"message":"ENOENT: no such file ./src/config.json","stack":"Error: ENOENT: no such file ./src/config.json\n    at main (file:///home/princetheprogrammerbtw/agent-replay/packages/examples/scripts/demo-agent.mjs:49:13)","name":"Error"}}
+{"id":"evt_l","ts":1783494738455,"kind":"prompt","name":"prompt.openai","level":"info","spanId":"span_4","parentId":null,"data":{"model":"gpt-4o","messages":[{"role":"user","content":"retry read"}]}}
+{"id":"evt_m","ts":1783494738485,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":"Sorry"}
+{"id":"evt_n","ts":1783494738505,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":", that"}
+{"id":"evt_o","ts":1783494738525,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" file"}
+{"id":"evt_p","ts":1783494738546,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" is"}
+{"id":"evt_q","ts":1783494738566,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":" missing"}
+{"id":"evt_r","ts":1783494738591,"kind":"delta","name":"delta","level":"info","spanId":"span_4","parentId":null,"data":"."}
+{"id":"evt_s","ts":1783494738614,"kind":"response","name":"response.openai","level":"info","spanId":"span_4","parentId":null,"data":{"model":"gpt-4o","content":"Sorry, that file is missing."}}
+{"id":"evt_t","ts":1783494738614,"kind":"metric","name":"metric.tokens","level":"info","spanId":"span_4","parentId":null,"data":{"name":"tokens","value":22}}
+{"id":"evt_u","ts":1783494738614,"kind":"metric","name":"metric.cost","level":"info","spanId":"span_4","parentId":null,"data":{"name":"cost","value":0.0004}}
+{"id":"evt_v","ts":1783494738614,"kind":"message","name":"message.assistant","level":"info","spanId":"root","parentId":null,"data":{"role":"assistant","content":"Sorry, that file is missing."}}
