@@ -1,0 +1,50 @@
+.tree {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.node {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--ar-text, #d4d4d4);
+}
+
+.node:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nodeActive {
+  background: rgba(99, 102, 241, 0.18);
+}
+
+.indent {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  margin-left: 6px;
+  padding-left: 10px;
+}
+
+.name {
+  color: var(--ar-accent, #a78bfa);
+}
+
+.dur {
+  color: var(--ar-muted, #6b7280);
+  font-size: 11px;
+}
+
+.count {
+  color: var(--ar-muted, #6b7280);
+  font-size: 11px;
+  margin-left: auto;
+}
+
+.empty {
+  color: var(--ar-muted, #6b7280);
+  font-style: italic;
+  padding: 8px;
+}

@@ -12,6 +12,7 @@ import { Conversation } from "./components/Conversation.js";
 import { EventInspector } from "./components/EventInspector.js";
 import { StatsPanel } from "./components/StatsPanel.js";
 import { FilterBar } from "./components/FilterBar.js";
+import { SpanTree } from "./components/SpanTree.js";
 import { summarize } from "@agent-replay/core";
 import type { AgentEvent, EventKind } from "@agent-replay/core";
 import styles from "./App.module.css";
@@ -106,6 +107,7 @@ export default function App() {
             <Conversation messages={state.messages} cursor={cursor} />
             <div className={styles.sidebar}>
               <StatsPanel summary={summarize(events)} />
+              <SpanTree spans={state.spans} activeId={state.spans[state.spans.length - 1]?.id ?? null} onSelect={(id) => { const idx = events.findIndex((e) => e.spanId === id); if (idx >= 0) rec.seek(idx + 1); }} />
               <EventInspector event={selected ?? events[cursor - 1] ?? null} />
             </div>
           </div>
