@@ -1,0 +1,22 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--ar-border, #2a2f3a);
+  border-radius: 6px;
+  background: var(--ar-surface, #161922);
+  color: var(--ar-text, #e2e8f0);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.toggle:hover {
+  background: var(--ar-surface-hover, #1f2430);
+}
+
+.icon {
+  font-size: 1rem;
+  line-height: 1;
+}

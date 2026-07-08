@@ -130,3 +130,31 @@ input[type="text"] {
   background: #1a1a24; border: 1px solid #2a2a38; color: #e5e7eb;
   padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.8rem; width: 240px;
 }
+
+/* Theme tokens — dark (default) */
+.theme-dark {
+  --ar-bg: #0a0a0f;
+  --ar-surface: #131320;
+  --ar-border: #2a2a3a;
+  --ar-text: #e4e4e7;
+  --ar-muted: #71717a;
+}
+.theme-light {
+  --ar-bg: #fafafa;
+  --ar-surface: #ffffff;
+  --ar-border: #e4e4e7;
+  --ar-text: #18181b;
+  --ar-muted: #71717a;
+}
+
+.themeBtn {
+  background: transparent;
+  border: 1px solid var(--ar-border);
+  color: var(--ar-text);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+.themeBtn:hover { opacity: 0.8; }

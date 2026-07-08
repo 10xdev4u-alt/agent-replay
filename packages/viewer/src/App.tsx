@@ -7,6 +7,7 @@
 import { useState, useCallback } from "react";
 import { useRecording, type RecordingSource } from "./hooks/useRecording.js";
 import { usePlayer } from "./hooks/usePlayer.js";
+import { useTheme } from "./hooks/useTheme.js";
 import { Timeline } from "./components/Timeline.js";
 import { Conversation } from "./components/Conversation.js";
 import { EventInspector } from "./components/EventInspector.js";
@@ -14,6 +15,7 @@ import { StatsPanel } from "./components/StatsPanel.js";
 import { FilterBar } from "./components/FilterBar.js";
 import { SpanTree } from "./components/SpanTree.js";
 import { KeyboardHelp } from "./components/KeyboardHelp.js";
+import { ThemeToggle } from "./components/ThemeToggle.js";
 import { summarize } from "@agent-replay/core";
 import type { AgentEvent, EventKind } from "@agent-replay/core";
 import styles from "./App.module.css";
@@ -27,6 +29,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [activeKinds, setActiveKinds] = useState<Set<EventKind>>(new Set());
   const [showHelp, setShowHelp] = useState(false);
+  useTheme();
 
   const visibleEvents: readonly AgentEvent[] =
     query || activeKinds.size
@@ -83,6 +86,7 @@ export default function App() {
           <button onClick={() => setSpeed(speed >= 4 ? 0.25 : speed * 2)} title="speed (+/-)" className={styles.speed}>{speed}×</button>
           <span className={styles.counter}>{cursor} / {events.length}</span>
           <button onClick={() => setShowHelp((v) => !v)} title="keyboard shortcuts (?)" className={styles.help}>?</button>
+          <ThemeToggle />
         </div>
       </header>
 
