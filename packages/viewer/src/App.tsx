@@ -13,6 +13,7 @@ import { EventInspector } from "./components/EventInspector.js";
 import { StatsPanel } from "./components/StatsPanel.js";
 import { FilterBar } from "./components/FilterBar.js";
 import { SpanTree } from "./components/SpanTree.js";
+import { KeyboardHelp } from "./components/KeyboardHelp.js";
 import { summarize } from "@agent-replay/core";
 import type { AgentEvent, EventKind } from "@agent-replay/core";
 import styles from "./App.module.css";
@@ -25,6 +26,7 @@ export default function App() {
   const [selected] = useState<AgentEvent | null>(null);
   const [query, setQuery] = useState("");
   const [activeKinds, setActiveKinds] = useState<Set<EventKind>>(new Set());
+  const [showHelp, setShowHelp] = useState(false);
 
   const visibleEvents: readonly AgentEvent[] =
     query || activeKinds.size
@@ -80,8 +82,11 @@ export default function App() {
           <button onClick={rec.seekEnd} disabled={!events.length} title="end (End)">⏭</button>
           <button onClick={() => setSpeed(speed >= 4 ? 0.25 : speed * 2)} title="speed (+/-)" className={styles.speed}>{speed}×</button>
           <span className={styles.counter}>{cursor} / {events.length}</span>
+          <button onClick={() => setShowHelp((v) => !v)} title="keyboard shortcuts (?)" className={styles.help}>?</button>
         </div>
       </header>
+
+      {showHelp && <KeyboardHelp open={showHelp} onClose={() => setShowHelp(false)} />}
 
       {loading && <div className={styles.banner}>loading…</div>}
       {error && <div className={styles.banner + " " + styles.error}>{error}</div>}
