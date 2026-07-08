@@ -11,4 +11,5 @@ export * from "./filters.js";
 export * from "./wrap.js";
 export * from "./archive.js";
 export * from "./diff.js";
+export * from "./serialize.js";
 export * from "./pricing.js";

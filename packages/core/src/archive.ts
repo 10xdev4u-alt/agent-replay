@@ -9,16 +9,19 @@ import { gzip, gunzip } from "node:zlib";
 import { promisify } from "node:util";
 import { readFile, writeFile } from "node:fs/promises";
 import type { AgentEvent } from "./types.js";
+import { encodeEvents, decodeEvents } from "./serialize.js";
 
 const gzipAsync = promisify(gzip);
 const gunzipAsync = promisify(gunzip);
 
 export const ARCHIVE_MAGIC = "ARPL"; // first 4 bytes of a valid .replay file
+export const ARCHIVE_VERSION = 2 as const; // v2: compact serialization
 
 /** The on-disk structure inside a .replay archive. */
 export interface ArchivePayload {
   magic: typeof ARCHIVE_MAGIC;
-  version: 1;
+  /** v1 = full-shape events, v2 = compact tuples (current). */
+  version: 1 | 2;
   meta: Record<string, unknown>;
   events: AgentEvent[];
 }
@@ -28,11 +31,11 @@ export async function toArchive(
   events: readonly AgentEvent[],
   meta: Record<string, unknown> = {},
 ): Promise<Buffer> {
-  const payload: ArchivePayload = {
+  const payload = {
     magic: ARCHIVE_MAGIC,
-    version: 1,
+    version: ARCHIVE_VERSION,
     meta,
-    events: [...events],
+    events: encodeEvents([...events]),
   };
   const json = JSON.stringify(payload);
   return gzipAsync(json);
@@ -41,14 +44,16 @@ export async function toArchive(
 /** Deserialize a gzipped .replay buffer back to events + meta. */
 export async function fromArchive(buf: Buffer): Promise<ArchivePayload> {
   const json = (await gunzipAsync(buf)).toString("utf8");
-  const payload = JSON.parse(json) as ArchivePayload;
-  if (payload.magic !== ARCHIVE_MAGIC) {
-    throw new Error(`not an agent-replay archive (bad magic: ${payload.magic})`);
+  const raw = JSON.parse(json) as { magic: string; version: 1 | 2; meta: Record<string, unknown>; events: unknown[] };
+  if (raw.magic !== ARCHIVE_MAGIC) {
+    throw new Error(`not an agent-replay archive (bad magic: ${raw.magic})`);
   }
-  if (payload.version !== 1) {
-    throw new Error(`unsupported archive version: ${payload.version}`);
+  if (raw.version !== 1 && raw.version !== 2) {
+    throw new Error(`unsupported archive version: ${raw.version}`);
   }
-  return payload;
+  // v1 stored full AgentEvent objects; v2 stores compact tuples.
+  const events = raw.version === 2 ? decodeEvents(raw.events as Parameters<typeof decodeEvents>[0]) : (raw.events as AgentEvent[]);
+  return { magic: raw.magic, version: raw.version, meta: raw.meta, events };
 }
 
 /** Write a .replay archive to disk. */
