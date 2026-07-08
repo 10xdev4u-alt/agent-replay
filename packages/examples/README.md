@@ -42,3 +42,17 @@ pnpm --filter @agent-replay/cli exec -- agent-replay play packages/examples/demo
 
 The pre-generated recording shipped with the repo (20 events). Use it to try
 the viewer or CLI without running the script first.
+
+## openai-agent.ts
+
+A real-world integration: wraps a live OpenAI API call with `wrapFetch` + a
+`Recorder`, capturing the prompt, response, and cost. Produces both a
+`.replay.jsonl` and a portable `.replay` archive.
+
+```bash
+OPENAI_API_KEY=sk-... node packages/examples/scripts/openai-agent.js
+# → packages/examples/openai.replay.jsonl + openai.replay
+```
+
+No `openai` SDK install required — it uses `fetch` against the REST API
+directly, which `wrapFetch` intercepts.
