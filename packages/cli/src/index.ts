@@ -13,6 +13,7 @@ import { version } from "./commands/version.js";
 import { exportCmd } from "./commands/export.js";
 import { importCmd } from "./commands/import.js";
 import { diff } from "./commands/diff.js";
+import { convert } from "./commands/convert.js";
 
 const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["record", record],
@@ -23,6 +24,7 @@ const COMMANDS = new Map<string, (args: string[]) => Promise<number>>([
   ["export", exportCmd],
   ["import", importCmd],
   ["diff", diff],
+  ["convert", convert],
 ]);
 
 function printHelp(): void {
@@ -39,6 +41,7 @@ COMMANDS
   export <in> <out>   Convert .replay.jsonl → portable .replay archive
   import <in> <out>   Convert .replay archive → .replay.jsonl
   diff <a> <b>        Diff two recordings, show what changed
+  convert <in> <out>  Auto-detect format and convert jsonl ↔ archive
   version             Print the installed version
 
 OPTIONS
