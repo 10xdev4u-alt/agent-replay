@@ -16,6 +16,8 @@ import { FilterBar } from "./components/FilterBar.js";
 import { SpanTree } from "./components/SpanTree.js";
 import { KeyboardHelp } from "./components/KeyboardHelp.js";
 import { ThemeToggle } from "./components/ThemeToggle.js";
+import { CheckpointBar } from "./components/CheckpointBar.js";
+import { useCheckpoints } from "./hooks/useCheckpoints.js";
 import { summarize } from "@agent-replay/core";
 import type { AgentEvent, EventKind } from "@agent-replay/core";
 import styles from "./App.module.css";
@@ -30,6 +32,7 @@ export default function App() {
   const [activeKinds, setActiveKinds] = useState<Set<EventKind>>(new Set());
   const [showHelp, setShowHelp] = useState(false);
   useTheme();
+  const { checkpoints, add: addCheckpoint, remove: removeCheckpoint } = useCheckpoints(source?.url ?? null);
 
   const visibleEvents: readonly AgentEvent[] =
     query || activeKinds.size
@@ -91,6 +94,16 @@ export default function App() {
       </header>
 
       {showHelp && <KeyboardHelp open={showHelp} onClose={() => setShowHelp(false)} />}
+
+      {events.length > 0 && (
+        <CheckpointBar
+          checkpoints={checkpoints}
+          cursor={cursor}
+          onAdd={() => addCheckpoint(cursor, events[cursor - 1]?.name)}
+          onRemove={(i) => removeCheckpoint(i)}
+          onJump={(c) => rec.seek(c)}
+        />
+      )}
 
       {loading && <div className={styles.banner}>loading…</div>}
       {error && <div className={styles.banner + " " + styles.error}>{error}</div>}

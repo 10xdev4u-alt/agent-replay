@@ -1,0 +1,59 @@
+.checkpoints {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--ar-border);
+  background: var(--ar-surface);
+  overflow-x: auto;
+  font-size: 12px;
+  min-height: 30px;
+}
+
+.empty {
+  color: var(--ar-muted);
+  font-style: italic;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--ar-border);
+  background: var(--ar-bg);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+.chip:hover {
+  background: var(--ar-accent-soft);
+}
+.chipAdd {
+  border-style: dashed;
+  color: var(--ar-muted);
+}
+.label {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  width: 90px;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.label:focus {
+  outline: 1px solid var(--ar-accent);
+}
+.remove {
+  border: none;
+  background: transparent;
+  color: var(--ar-muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.remove:hover {
+  color: var(--ar-error);
+}
