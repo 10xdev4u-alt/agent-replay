@@ -12,4 +12,5 @@ export * from "./wrap.js";
 export * from "./archive.js";
 export * from "./diff.js";
 export * from "./serialize.js";
+export * from "./merge.js";
 export * from "./pricing.js";
